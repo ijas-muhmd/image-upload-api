@@ -74,10 +74,6 @@ def upload_file_to_s3(bucket_name, subject, file: UploadFile):
 
 @app.post("/upload/")
 async def upload_image(subject: str, file: UploadFile = File(...)):
-    # Check file type
-    if not file.content_type in ['image/png', 'image/jpeg']:
-        raise HTTPException(status_code=400, detail="Only PNG and JPEG files are allowed")
-        
     bucket_name = "lumi-questions"
     
     # Upload the file and get the URL
